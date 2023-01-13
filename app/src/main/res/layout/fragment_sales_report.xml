@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.saleitems.SaleItemsFragment">
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.anshad.g_coaster.ui.salereport.SalesReportViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.anshad.g_coaster.ui.salereport.SalesReportAdapter" />
+
+        <variable
+            name="message"
+            type="String" />
+        <variable
+            name="isLoading"
+            type="Boolean" />
+        <import type="android.view.View"/>
+    </data>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/current_view"
+            android:background="@drawable/bg_gradient"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <TextView
+                android:id="@+id/txt_total_sale"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/total_sale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:id="@+id/total_sale"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:text="@{viewModel._currentSale.total!= null ? viewModel._currentSale.total+ ` Rs`: 0+ ` Rs`}"
+                app:layout_constraintTop_toBottomOf="@id/txt_total_sale"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="1000 Rs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/txt_no_bills"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/total_sale"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/no_of_bills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:id="@+id/no_bills"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:text="@{viewModel._currentSale.noofbills!= null ? viewModel._currentSale.noofbills.toString() : 0+``}"
+                app:layout_constraintTop_toBottomOf="@id/txt_no_bills"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <ImageView
+                android:text="@string/report"
+                android:id="@+id/report"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:src="@drawable/ic_report"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:adapter="@{adapter}"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/current_view"
+            tools:listitem="@layout/salesreport_list_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/loading_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{message}"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar"
+            tools:text="Loading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

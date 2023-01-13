@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.anshad.g_coaster_shop",
+  "variantName": "gcostershopDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1,
+      "versionName": "1.0.0",
+      "outputFile": "app-gcostershop-debug.apk"
+    }
+  ],
+  "elementType": "File"
+}
