@@ -25,12 +25,12 @@
         <variable
             name="quantityError"
             type="String" />
-        <variable
+        <!--<variable
             name="sizeError"
             type="String" />
         <variable
             name="colorError"
-            type="String" />
+            type="String" />-->
         <variable
             name="message"
             type="String" />
@@ -169,12 +169,13 @@
                 android:text="@={viewModel.quantity}"
                 app:errorText="@{quantityError}"
                 android:inputType="number"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
 
                 app:boxBackgroundColor="@color/purple_700" />
 
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
+     <!--   <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/color_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -380,7 +381,7 @@
                 android:text="46"/>
 
 
-        </com.google.android.material.chip.ChipGroup>
+        </com.google.android.material.chip.ChipGroup>-->
 
         <Button
             android:id="@+id/btn_additem"
@@ -392,7 +393,7 @@
             android:layout_marginBottom="15dp"
             android:padding="10dp"
             android:text="@string/add_item"
-           app:layout_constraintTop_toBottomOf="@id/chips_group"
+           app:layout_constraintTop_toBottomOf="@id/quantity_input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 

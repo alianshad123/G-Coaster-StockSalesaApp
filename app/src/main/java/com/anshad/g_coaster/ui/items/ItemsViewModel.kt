@@ -15,6 +15,7 @@ import com.anshad.g_coaster.data.repositories.PreferenceProvider
 import com.anshad.g_coaster.model.AddItemModel
 import com.anshad.g_coaster.model.ItemsModel
 import com.anshad.g_coaster.model.ItemsModelData
+import com.anshad.g_coaster.model.SearchItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -111,7 +112,30 @@ class ItemsViewModel @Inject constructor(
             })
         }
 
+    fun filterData(newText: String?) {
+        if((newText?.length ?: 0) <= 0){
+            getItems()
+            return
+        }
+        showLoading_()
+        repository.searchItem(SearchItem(search = newText)).subscribe({ apiResult ->
+            hideLoading_()
+            if (apiResult.isSuccess) {
 
+                _itemsObserveList.postValue(apiResult.data)
+                apiResult.data?.result?.forEach {
+                    itemsArray.add(it)
+                }
+            } else {
+                _itemsObserveList.postValue(null)
+
+
+            }
+        }, {
+            hideLoading_()
+
+        })
+    }
 
 
 }

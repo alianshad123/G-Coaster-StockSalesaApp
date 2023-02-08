@@ -89,7 +89,8 @@ class ItemsFragment : BaseFragment<ItemsViewModel>(R.layout.fragment_items), Ite
                 // new text on below line.
               //  adapter.updateData( adapter.data.filter { it.name?.contains(newText.toString()) == true ||it.name?.contains(newText.toString()) == true })
 
-                filterData(newText);
+               // filterData(newText);
+                viewModel.filterData(newText);
                 return false
             }
         })
@@ -103,8 +104,9 @@ class ItemsFragment : BaseFragment<ItemsViewModel>(R.layout.fragment_items), Ite
             } else {
 
                 // Do your task here
-                binding.search.setQuery("", false);
-                adapter.updateData(viewModel.itemsArray)
+                binding.search.setQuery("", false)
+                viewModel.getItems()
+              //  adapter.updateData(viewModel.itemsArray)
             }
 
 

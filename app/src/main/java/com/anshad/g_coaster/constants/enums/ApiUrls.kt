@@ -16,5 +16,6 @@ object ApiUrls {
     const val CURRENT_SALE= "getCurrentSale.php"
     const val GET_BILLS= "getDateBasedSales.php"
     const val GET_SALESBY_BILLS="getSalesByBill.php"
+    const val SEARCH_ITEM="searchItems.php"
 
 }

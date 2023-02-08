@@ -52,5 +52,8 @@ interface ApiService {
     @POST(ApiUrls.GET_SALESBY_BILLS)
     fun getSalesByBills(@Body request: SalesRequest): Single<Result<DefaultResponse<SoldItemsModel>>>
 
+    @POST(ApiUrls.SEARCH_ITEM)
+    fun searchItem(@Body request: SearchItem): Single<Result<DefaultResponse<ItemsModelData>>>
+
 
 }

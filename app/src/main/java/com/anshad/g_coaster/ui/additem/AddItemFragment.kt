@@ -70,7 +70,7 @@ class AddItemFragment : BaseFragment<AddItemViewModel>(R.layout.fragment_add_ite
 
         if(viewModel.isEdit){
             binding.btnAdditem.text="UPDATE"
-            binding.tvChoosemultisize.visibility=View.INVISIBLE
+          //  binding.tvChoosemultisize.visibility=View.INVISIBLE
         }
 
         binding.btnAdditem.setOnClickListener {
@@ -92,15 +92,15 @@ class AddItemFragment : BaseFragment<AddItemViewModel>(R.layout.fragment_add_ite
 
         })
 
-        binding.chipsGroup.forEach { child ->
+       /* binding.chipsGroup.forEach { child ->
             (child as? Chip)?.setOnCheckedChangeListener { buttonView, isChecked ->
                viewModel.sizeArray.add(buttonView.text.toString()
                )
 
             }
-        }
+        }*/
 
-        binding.tvChoosemultisize.setOnClickListener {
+       /* binding.tvChoosemultisize.setOnClickListener {
             if(binding.tvChoosemultisize.tag=="hide"){
                 binding.chipsGroup.visibility=View.VISIBLE
                 binding.tvChoosemultisize.tag="show"
@@ -111,7 +111,7 @@ class AddItemFragment : BaseFragment<AddItemViewModel>(R.layout.fragment_add_ite
 
             }
 
-        }
+        }*/
 
         viewModel.loading_.observe(viewLifecycleOwner, EventObserver {
             _onLoadingMessage(it)
@@ -133,14 +133,14 @@ class AddItemFragment : BaseFragment<AddItemViewModel>(R.layout.fragment_add_ite
         binding.costprize.text?.clear()
         binding.sellingprize.text?.clear()
         binding.quantity.text?.clear()
-        binding.size.text?.clear()
+        /*binding.size.text?.clear()
         binding.color.text?.clear()
         binding.chipsGroup.clearCheck()
         viewModel.sizeArray.clear()
 
         binding.chipsGroup.visibility=View.GONE
         binding.tvChoosemultisize.tag="hide"
-        binding.tvChoosemultisize.visibility=View.VISIBLE
+        binding.tvChoosemultisize.visibility=View.VISIBLE*/
         binding.btnAdditem.text="ADD ITEM"
 
     }

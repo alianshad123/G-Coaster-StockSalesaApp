@@ -71,7 +71,7 @@ class AddItemViewModel @Inject constructor(
     }
     fun addItemData() {
 
-        if(sizeArray.size>0){
+       /* if(sizeArray.size>0){
 
             val arrayItems=ArrayList<AddItemModel>()
 
@@ -98,7 +98,7 @@ class AddItemViewModel @Inject constructor(
           }
             addMultiItem(arrayItems)
 
-        }else {
+        }else {*/
 
 
             if (validateData(
@@ -106,8 +106,7 @@ class AddItemViewModel @Inject constructor(
                     code.value,
                     costPrize.value,
                     sellingPrize.value,
-                    quantity.value,
-                    size.value
+                    quantity.value
                 )
             ) {
 
@@ -115,7 +114,7 @@ class AddItemViewModel @Inject constructor(
                 addItem()
 
             }
-        }
+       // }
     }
 
     private fun validateData(
@@ -123,8 +122,7 @@ class AddItemViewModel @Inject constructor(
         code: String?,
         costPrize: String?,
         sellingPrize: String?,
-        quantity: String?,
-        size: String?
+        quantity: String?
     ): Boolean {
         var res = true
        /* if (name.isNullOrBlank()) {
@@ -156,12 +154,12 @@ class AddItemViewModel @Inject constructor(
             quantityError.value =
                 App.instance.getString(R.string.field_missing)
         }
-
+/*
         if (size.isNullOrBlank()) {
             res = false
             sizeError.value =
                 App.instance.getString(R.string.field_missing)
-        }
+        }*/
 
         return res
     }
@@ -238,9 +236,7 @@ class AddItemViewModel @Inject constructor(
             costprize = costPrize.value?.toDouble(),
             sellingprize = sellingPrize.value?.toDouble(),
             quantity = quantity.value?.toInt(),
-            size = size.value?.toInt(),
-            isDeleted = 0,
-            color=color.value
+            isDeleted = 0
         ))
         showLoading_()
         repository.additemsArray(
@@ -269,7 +265,6 @@ class AddItemViewModel @Inject constructor(
                 costPrize.value,
                 sellingPrize.value,
                 quantity.value,
-                size.value
             )
         ) {
             updateItem(id)
@@ -286,9 +281,7 @@ class AddItemViewModel @Inject constructor(
                 codename = code.value,
                 costprize = costPrize.value?.toDouble(),
                 sellingprize = sellingPrize.value?.toDouble(),
-                quantity = quantity.value?.toInt(),
-                size = size.value?.toInt(),
-                color =color.value
+                quantity = quantity.value?.toInt()
             )
         ).subscribe({ result ->
             hideLoading_()
