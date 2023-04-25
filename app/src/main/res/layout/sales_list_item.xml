@@ -13,6 +13,8 @@
             name="listner"
             type="com.anshad.g_coaster.ui.sales.ItemClickListner" />
 
+        <import type="android.view.View"/>
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -93,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:text="Size"
+                android:visibility="@{salesData.size!=null &amp;&amp; salesData.size>0 ? View.VISIBLE : View.GONE}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@id/tv_size_value"
@@ -107,6 +110,7 @@
                 android:text="@{salesData.size.toString()}"
                 android:textColor="@color/black"
                 android:textSize="22sp"
+                android:visibility="@{salesData.size!=null &amp;&amp; salesData.size>0 ? View.VISIBLE : View.GONE}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_sellingprize"

@@ -16,14 +16,14 @@ class ItemsDataSource@Inject constructor(
 ) : ItemsRepository {
 
     interface Remote {
-        fun getItems(): Single<APIResult<ItemsModelData>>
+        fun getItems(pageLimit: Int): Single<APIResult<ItemsModelData>>
         fun deleteItem(request: AddItemModel): Single<APIResult<String>>
         fun getItemById(itemId: AddItemModel): Single<APIResult<ItemsModel>>
         fun searchItem(request: SearchItem): Single<APIResult<ItemsModelData>>
     }
 
-    override fun getItems(): Single<APIResult<ItemsModelData>> {
-        return remote.getItems()
+    override fun getItems(pageLimit: Int): Single<APIResult<ItemsModelData>> {
+        return remote.getItems(pageLimit)
 
     }
 

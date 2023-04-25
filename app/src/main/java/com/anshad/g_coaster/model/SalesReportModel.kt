@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class SalesReportModel {
-    @SerializedName("result")
+    @SerializedName("data")
     @Expose
     var result: ArrayList<SalesReport>? = null
 }

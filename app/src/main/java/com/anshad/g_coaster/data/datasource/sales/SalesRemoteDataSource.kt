@@ -10,11 +10,11 @@ import javax.inject.Inject
 
 class SalesRemoteDataSource @Inject constructor(private val apiService: ApiService) :
     BaseRemote(), SalesDataSource.Remote {
-    override fun getOutofStocks(): Single<APIResult<ItemsModelData>> {
-        return apiService.getOutofStocks().createResult().applyNetworkSchedulers()
+    override fun getOutofStocks(pageLimit: PageLimit): Single<APIResult<ItemsModelData>> {
+        return apiService.getOutofStocks(pageLimit).createResult().applyNetworkSchedulers()
     }
 
-    override fun getSalesReport(): Single<APIResult<SalesReportModel>> {
+    override fun getSalesReport(): Single<APIResult<List<SalesReport>>> {
         return apiService.getSalesReport().createResult().applyNetworkSchedulers()
     }
 
@@ -22,7 +22,7 @@ class SalesRemoteDataSource @Inject constructor(private val apiService: ApiServi
         return apiService.getSales(request).createResult().applyNetworkSchedulers()
     }
 
-    override fun getCurrentSale(request: SaleFilterDateModel): Single<APIResult<SalesReport>> {
+    override fun getCurrentSale(request: SaleFilterDateModel): Single<APIResult<List<SalesReport>>> {
         return apiService.getCurrentSale(request).createResult().applyNetworkSchedulers()
     }
 
@@ -32,6 +32,10 @@ class SalesRemoteDataSource @Inject constructor(private val apiService: ApiServi
 
     override fun getSalesByBills(request: SalesRequest): Single<APIResult<SoldItemsModel>> {
         return apiService.getSalesByBills(request).createResult().applyNetworkSchedulers()
+    }
+
+    override fun searchOutOfStock(request: OutOfStockSearch): Single<APIResult<ItemsModelData>> {
+        return apiService.searchOutOfStock(request).createResult().applyNetworkSchedulers()
     }
 
 

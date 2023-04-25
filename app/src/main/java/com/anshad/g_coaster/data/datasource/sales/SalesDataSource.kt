@@ -1,9 +1,6 @@
 package com.anshad.g_coaster.data.datasource.sales
 
 import com.anshad.basestructure.model.APIResult
-import com.anshad.g_coaster.data.datasource.items.ItemsDataSource
-import com.anshad.g_coaster.data.repositories.ItemsRepository
-import com.anshad.g_coaster.data.repositories.PreferenceProvider
 import com.anshad.g_coaster.data.repositories.SalesRepository
 import com.anshad.g_coaster.model.*
 import io.reactivex.rxjava3.core.Single
@@ -13,22 +10,29 @@ class SalesDataSource @Inject constructor(
     private val remote: SalesDataSource.Remote,
 ) : SalesRepository {
     interface Remote {
-        fun getOutofStocks(): Single<APIResult<ItemsModelData>>
+        fun getOutofStocks(pageLimit: PageLimit): Single<APIResult<ItemsModelData>>
 
-        fun getSalesReport(): Single<APIResult<SalesReportModel>>
+        fun getSalesReport(): Single<APIResult<List<SalesReport>>>
 
         fun getSales(request: SaleFilterDateModel): Single<APIResult<SoldItemsModel>>
-        fun getCurrentSale(request: SaleFilterDateModel): Single<APIResult<SalesReport>>
+        fun getCurrentSale(request: SaleFilterDateModel): Single<APIResult<List<SalesReport>>>
         fun getBills(request: SaleFilterDateModel): Single<APIResult<BillsListModel>>
         fun getSalesByBills(request: SalesRequest): Single<APIResult<SoldItemsModel>>
+        fun searchOutOfStock(request: OutOfStockSearch): Single<APIResult<ItemsModelData>>
 
     }
 
-    override fun getOutofStocks(): Single<APIResult<ItemsModelData>> {
-        return remote.getOutofStocks()
+    override fun getOutofStocks(pageLimit: PageLimit): Single<APIResult<ItemsModelData>> {
+        return remote.getOutofStocks(pageLimit)
     }
 
-    override fun getSalesReport(): Single<APIResult<SalesReportModel>> {
+    override fun searchOutOfStock(request: OutOfStockSearch): Single<APIResult<ItemsModelData>> {
+        return remote.searchOutOfStock(request)
+    }
+
+
+
+    override fun getSalesReport(): Single<APIResult<List<SalesReport>>> {
 
         return remote.getSalesReport()
     }
@@ -39,7 +43,7 @@ class SalesDataSource @Inject constructor(
     }
 
 
-    override fun getCurrentSale(request: SaleFilterDateModel): Single<APIResult<SalesReport>> {
+    override fun getCurrentSale(request: SaleFilterDateModel): Single<APIResult<List<SalesReport>>> {
         return remote.getCurrentSale(request)
     }
 
@@ -50,4 +54,6 @@ class SalesDataSource @Inject constructor(
     override fun getSalesByBills(request: SalesRequest): Single<APIResult<SoldItemsModel>> {
         return remote.getSalesByBills(request)
     }
+
+
 }

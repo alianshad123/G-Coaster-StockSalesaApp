@@ -22,8 +22,8 @@ class SalesReportViewModel @Inject constructor(
     private val repository: SalesRepository
 ) : BaseViewModel() {
 
-    val _salesReportData = MutableLiveData<SalesReportModel?>()
-    val salesReportData: MutableLiveData<SalesReportModel?> = _salesReportData
+    val _salesReportData = MutableLiveData<List<SalesReport>?>()
+    val salesReportData: MutableLiveData<List<SalesReport>?> = _salesReportData
 
     val _currentSale=MutableLiveData<SalesReport?>()
     val currentSale: MutableLiveData<SalesReport?> = _currentSale
@@ -82,7 +82,7 @@ class SalesReportViewModel @Inject constructor(
             hideLoading()
             if (apiResult.isSuccess) {
                 if(apiResult.data!=null ){
-                    _currentSale.postValue(apiResult.data)
+                    _currentSale.postValue(apiResult.data?.first())
                 }
 
 

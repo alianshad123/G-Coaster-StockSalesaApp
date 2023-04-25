@@ -1,6 +1,5 @@
 package com.anshad.g_coaster.ui.saleitems
 
-import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,6 +25,7 @@ class SaleItemsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
 
+     val pageLimit: Int=10
     val _itemsObserveList = MutableLiveData<ItemsModelData?>()
     val itemsObserveListData: MutableLiveData<ItemsModelData?> = _itemsObserveList
 
@@ -62,7 +62,7 @@ class SaleItemsViewModel @Inject constructor(
 
     fun getItems(){
         showLoading_()
-        repository.getItems().subscribe({ apiResult ->
+        repository.getItems(pageLimit).subscribe({ apiResult ->
             hideLoading_()
             if (apiResult.isSuccess) {
 

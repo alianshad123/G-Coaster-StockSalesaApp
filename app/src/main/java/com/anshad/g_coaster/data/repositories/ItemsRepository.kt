@@ -8,7 +8,7 @@ import com.anshad.g_coaster.model.SearchItem
 import io.reactivex.rxjava3.core.Single
 
 interface ItemsRepository {
-    fun getItems() : Single<APIResult<ItemsModelData>>
+    fun getItems(pageLimit: Int): Single<APIResult<ItemsModelData>>
     fun deleteItem(addItemModel: AddItemModel): Single<APIResult<String>>
     fun getItemById(itemId: AddItemModel): Single<APIResult<ItemsModel>>
     fun searchItem(request: SearchItem):  Single<APIResult<ItemsModelData>>

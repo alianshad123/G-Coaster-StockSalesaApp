@@ -26,7 +26,7 @@ class ItemsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
 
-
+    val pageLimit=10
     val _itemsObserveList = MutableLiveData<ItemsModelData?>()
     val itemsObserveListData: MutableLiveData<ItemsModelData?> = _itemsObserveList
 
@@ -54,7 +54,7 @@ class ItemsViewModel @Inject constructor(
 
     fun getItems(){
         showLoading_()
-        repository.getItems().subscribe({ apiResult ->
+        repository.getItems(pageLimit).subscribe({ apiResult ->
             hideLoading_()
             if (apiResult.isSuccess) {
 

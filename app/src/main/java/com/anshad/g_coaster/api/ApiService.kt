@@ -8,13 +8,14 @@ import retrofit2.adapter.rxjava3.Result
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
     @POST(ApiUrls.ADD_ITEM)
     fun addItems(@Body request: AddItemModel): Single<Result<DefaultResponse<String>>>
 
     @GET(ApiUrls.ITEMS)
-    fun getItems(): Single<Result<DefaultResponse<ItemsModelData>>>
+    fun getItems(@Query("pageLimit") pageLimit: Int?): Single<Result<DefaultResponse<ItemsModelData>>>
 
     @POST(ApiUrls.UPDATE_ITEM)
     fun updateItems(@Body request: AddItemModel): Single<Result<DefaultResponse<String>>>
@@ -34,17 +35,17 @@ interface ApiService {
     @POST(ApiUrls.ADD_SALEITEMS)
     fun updateSaleItems(@Body request: List<SalesItemsModel>): Single<Result<DefaultResponse<String>>>
 
-    @GET(ApiUrls.OUTOFFSTOCKS)
-    fun getOutofStocks(): Single<Result<DefaultResponse<ItemsModelData>>>
+    @POST(ApiUrls.OUTOFFSTOCKS)
+    fun getOutofStocks(@Body request: PageLimit): Single<Result<DefaultResponse<ItemsModelData>>>
 
-    @GET(ApiUrls.SALESREPORT)
-    fun getSalesReport(): Single<Result<DefaultResponse<SalesReportModel>>>
+    @POST(ApiUrls.SALESREPORT)
+    fun getSalesReport(): Single<Result<DefaultResponse<List<SalesReport>>>>
 
     @POST(ApiUrls.SOLDITEMS)
     fun getSales(@Body request: SaleFilterDateModel): Single<Result<DefaultResponse<SoldItemsModel>>>
 
     @POST(ApiUrls.CURRENT_SALE)
-    fun getCurrentSale(@Body request: SaleFilterDateModel):  Single<Result<DefaultResponse<SalesReport>>>
+    fun getCurrentSale(@Body request: SaleFilterDateModel):  Single<Result<DefaultResponse<List<SalesReport>>>>
 
     @POST(ApiUrls.GET_BILLS)
     fun getBills(@Body request: SaleFilterDateModel): Single<Result<DefaultResponse<BillsListModel>>>
@@ -54,6 +55,9 @@ interface ApiService {
 
     @POST(ApiUrls.SEARCH_ITEM)
     fun searchItem(@Body request: SearchItem): Single<Result<DefaultResponse<ItemsModelData>>>
+
+    @POST(ApiUrls.OUTOFFSTOCKS)
+    fun searchOutOfStock(@Body request: OutOfStockSearch): Single<Result<DefaultResponse<ItemsModelData>>>
 
 
 }

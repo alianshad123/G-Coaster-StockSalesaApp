@@ -50,8 +50,8 @@ class SalesReportFragment :  BaseFragment<SalesReportViewModel>(R.layout.fragmen
 
         viewModel.salesReportData.observe(viewLifecycleOwner) {
             it?.let {
-                if (it.result?.size!! > 0) {
-                    adapter.updateData(it?.result?.asReversed()!!)
+                if (it?.size!! > 0) {
+                    adapter.updateData(it?.asReversed()!!)
                 }
 
             }

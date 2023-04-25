@@ -13,8 +13,8 @@ import javax.inject.Inject
 
 class ItemRemoteDataSource @Inject constructor(private val apiService: ApiService) :
     BaseRemote(), ItemsDataSource.Remote {
-    override fun getItems(): Single<APIResult<ItemsModelData>> {
-        return apiService.getItems().createResult().applyNetworkSchedulers()
+    override fun getItems(pageLimit: Int): Single<APIResult<ItemsModelData>> {
+        return apiService.getItems(pageLimit).createResult().applyNetworkSchedulers()
     }
 
     override fun deleteItem(request: AddItemModel): Single<APIResult<String>> {

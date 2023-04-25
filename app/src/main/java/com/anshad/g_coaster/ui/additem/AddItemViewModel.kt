@@ -229,18 +229,16 @@ class AddItemViewModel @Inject constructor(
 
     fun addItem() {
 
-        val arrayItems=ArrayList<AddItemModel>()
-        arrayItems.add(AddItemModel(
-            name = name.value,
-            codename = code.value,
-            costprize = costPrize.value?.toDouble(),
-            sellingprize = sellingPrize.value?.toDouble(),
-            quantity = quantity.value?.toInt(),
-            isDeleted = 0
-        ))
         showLoading_()
-        repository.additemsArray(
-            arrayItems
+        repository.additems(
+            AddItemModel(
+                name = name.value,
+                codename = code.value,
+                costprize = costPrize.value?.toDouble(),
+                sellingprize = sellingPrize.value?.toDouble(),
+                quantity = quantity.value?.toInt(),
+                isDeleted = 0
+            )
         ).subscribe({ result ->
             hideLoading_()
             if (result.isSuccess) {
